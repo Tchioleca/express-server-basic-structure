@@ -29,7 +29,12 @@ GET /api/users/verify
 */
 
 //card routes:
+const cardRoute = require("./card.routes");
+router.use("/", cardRoute);
+
 //Deck routes:
+const deckRoute = require("./deck.routes");
+router.use("/", deckRoute);
 // collection routes :
 
 module.exports = router;

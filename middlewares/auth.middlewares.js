@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken")
+
 function verifyToken(req, res, next){
     try {
         const authHeader = req.headers.authorization;
@@ -6,11 +7,10 @@ function verifyToken(req, res, next){
             return res.status(401).json({ errorMessage: "No token provided" });
         }
 
-        const token = req.headers.authorization.split("")[1];
+        const token = req.headers.authorization.split(" ")[1]; // 👈 space here, inside the function
+
         const payload = jwt.verify(token, process.env.TOKEN_SECRET);
         
-        /*console.log(payload)*/
-
         req.payload = payload;
         
         next()
